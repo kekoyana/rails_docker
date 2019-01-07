@@ -4,10 +4,9 @@ services:
     build: .
     ports:
       - "3000:3000"
-    tty: true
+    command: bundle exec puma
     volumes:
       - "./:/work"
-      #- "bundle-data:bundle"
       - "./docker_tmp/bundle_data:/bundle"
     depends_on:
       - db
@@ -15,6 +14,3 @@ services:
     image: postgres
     volumes:
       - "./docker_tmp/pgdata:/var/lib/postgresql/data"
-# volumes:
-#   bundle-data:
-#   db-data:
