@@ -8,8 +8,8 @@ services:
       - "3000:3000"
     command: bundle exec puma
     volumes:
-      - "./:/work"
-      - "./docker_tmp/bundle_data:/bundle"
+      - "./:/work:cached"
+      - "./docker_tmp/bundle_data:/bundle:cached"
     depends_on:
       - db
   db:
