@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/kekoyana/rails_docker.svg?style=svg)](https://circleci.com/gh/kekoyana/rails_docker)
+
 Dockerでrailsを動かした
 
 ## rails new
