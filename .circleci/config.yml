@@ -26,7 +26,6 @@ defaults: &defaults
 jobs:
   build:
     <<: *defaults
-
     steps:
       - checkout
 
@@ -53,16 +52,43 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - ./*
+
   test:
     <<: *defaults
-
     steps:
+      - attach_workspace:
+          at: ~/repo
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
+      - run:
+          name: bundle config
+          command: |
+            bundle config --local path vendor/bundle
       # run tests!
       - run:
           name: run tests
           command: |
             bundle exec rspec
 
+  rubocop:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
+      - run:
+          name: bundle config
+          command: |
+            bundle config --local path vendor/bundle
       # run rubocop
       - run:
           name: run rubocop
@@ -74,4 +100,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
+      - rubocop:
+          requires:
+            - build
