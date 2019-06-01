@@ -27,6 +27,7 @@ group :development do
   gem "listen"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
+  gem "rubocop-rails"
   gem "rubocop-rspec"
   gem "web-console"
 end
