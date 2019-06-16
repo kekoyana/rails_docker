@@ -21,4 +21,4 @@ RUN apk add --update --no-cache \
 ENV APP_PATH /work
 WORKDIR $APP_PATH
 
-ENTRYPOINT ["/work/entrypoint.sh"]
+CMD ["/work/entrypoint.sh]
