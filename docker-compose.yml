@@ -9,10 +9,13 @@ services:
     command: bundle exec puma
     volumes:
       - "./:/work:cached"
-      - "./docker_tmp/bundle_data:/bundle:cached"
+      - "./vendor/bundle:/usr/local/bundle:cached"
+      - "/work/.git"
     depends_on:
       - db
   db:
-    image: postgres
+    image: postgres:11-alpine
     volumes:
-      - "./docker_tmp/pgdata:/var/lib/postgresql/data"
+      - "db:/var/lib/postgresql/data"
+volumes:
+  db: {}
