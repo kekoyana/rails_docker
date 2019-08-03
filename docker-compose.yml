@@ -6,7 +6,6 @@ services:
     build: .
     ports:
       - "3000:3000"
-    command: bundle exec puma
     volumes:
       - "./:/work:cached"
       - "./vendor/bundle:/usr/local/bundle:cached"

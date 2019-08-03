@@ -17,6 +17,7 @@ AllCops:
     - "actiontext/test/dummy/**/*"
     - "node_modules/**/*"
     - "docker_tmp/**/*"
+    - "db/*schema.rb"
 
 Performance:
   Exclude:
