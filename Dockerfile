@@ -16,9 +16,10 @@ RUN apk add --update --no-cache \
     vim \
     wget \
     chromium \
-    chromium-chromedriver
+    chromium-chromedriver && \
+    gem install bundler -v 2.0.2
 
 ENV APP_PATH /work
 WORKDIR $APP_PATH
 
-CMD ["/work/entrypoint.sh]
+CMD ["/work/run_server.sh"]
