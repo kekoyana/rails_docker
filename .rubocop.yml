@@ -25,8 +25,9 @@ Layout/AlignHash:
 
 # クラスの定義順に規約をいれる
 # https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
+# 将来的には入れたいが、auto-currect で private のアクセサが外に出たりするので止める
 Layout/ClassStructure:
-  Enabled: true
+  Enabled: false
 
 # return if hoge? のあとは行を空けなくてもよい
 Layout/EmptyLineAfterGuardClause:
@@ -58,15 +59,15 @@ Metrics/ParameterLists:
 Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
 
+# nested は事故るので false にする
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
     find: 'detect'     # ActiveRecordのfindのイメージが強いので変える
     find_all: 'filter' # ruby2.6以降は多言語にあわせfilterを使っていきたい
-
-# nested は事故るので false にする
-Style/ClassAndModuleChildren:
-  Enabled: false
 
 # コメントがないクラスも許可する
 Style/Documentation:
