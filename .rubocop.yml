@@ -55,6 +55,10 @@ Metrics/ParameterLists:
   CountKeywordArgs: false
 
 # Style ----------------------------------------
+# 日本語コメントを許可する
+Style/AsciiComments:
+   Enabled: false
+
 # 引数のハッシュはよしなにする
 Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
