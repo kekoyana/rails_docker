@@ -1,235 +1,100 @@
+# require ---------------------------------------
 require:
-  - "rubocop-performance"
-  - "rubocop-rails"
-  - "rubocop-rspec"
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
+# main ------------------------------------------
 AllCops:
+  Exclude:
+    # 自動生成は除外する
+    - db/*schema.rb
+    - node_modules/**/*
+    - vendor/**/*
   TargetRubyVersion: 2.6
-  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
-  # to ignore them, so only the ones explicitly set in this file are enabled.
-  DisabledByDefault: true
+
+# Layout ----------------------------------------
+# ハッシュはtable,key両方許容
+Layout/AlignHash:
+  EnforcedColonStyle:
+    - table
+    - key
+  EnforcedHashRocketStyle:
+    - table
+    - key
+
+# クラスの定義順に規約をいれる
+# https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
+# 将来的には入れたいが、auto-currect で private のアクセサが外に出たりするので止める
+Layout/ClassStructure:
+  Enabled: false
+
+# return if hoge? のあとは行を空けなくてもよい
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+# Metrics ---------------------------------------
+Metrics/AbcSize:
+  Max: 16
+
+Metrics/BlockLength:
   Exclude:
-    - "**/templates/**/*"
-    - "**/vendor/**/*"
-    - "actionpack/lib/action_dispatch/journey/parser.rb"
-    - "railties/test/fixtures/tmp/**/*"
-    - "actionmailbox/test/dummy/**/*"
-    - "actiontext/test/dummy/**/*"
-    - "node_modules/**/*"
-    - "docker_tmp/**/*"
-    - "db/*schema.rb"
+    - config/environments/*.rb
+    - config/routes.rb
+    - config/routes/**/*.rb
+    - spec/**/*_spec.rb
+    - spec/factories/*
 
-Performance:
+Metrics/LineLength:
   Exclude:
-    - "**/test/**/*"
+    - db/migrate/*.rb
+  Max: 120
 
-Rails:
-  Enabled: true
+Metrics/ParameterLists:
+  # キーワード引数の数に制限を設けない
+  CountKeywordArgs: false
 
-# Prefer assert_not over assert !
-Rails/AssertNot:
-  Include:
-    - "**/test/**/*"
+# Style ----------------------------------------
+# 日本語コメントを許可する
+Style/AsciiComments:
+   Enabled: false
 
-# Prefer assert_not_x over refute_x
-Rails/RefuteMethods:
-  Include:
-    - "**/test/**/*"
-
-# Prefer &&/|| over and/or.
-Style/AndOr:
-  Enabled: true
-
-# Do not use braces for hash literals when they are the last argument of a
-# method call.
+# 引数のハッシュはよしなにする
 Style/BracesAroundHashParameters:
-  Enabled: true
   EnforcedStyle: context_dependent
 
-# Align `when` with `case`.
-Layout/IndentFirstArgument:
-  Enabled: true
+# nested は事故るので false にする
+Style/ClassAndModuleChildren:
+  Enabled: false
 
-# Align comments with method definitions.
-Layout/CommentIndentation:
+Style/CollectionMethods:
   Enabled: true
+  PreferredMethods:
+    find: 'detect'     # ActiveRecordのfindのイメージが強いので変える
+    find_all: 'filter' # ruby2.6以降は多言語にあわせfilterを使っていきたい
 
-Layout/ElseAlignment:
-  Enabled: true
+# コメントがないクラスも許可する
+Style/Documentation:
+  Enabled: false
 
-# Align `end` with the matching keyword or starting expression except for
-# assignments, where it should be aligned with the LHS.
-Layout/EndAlignment:
-  Enabled: true
-  EnforcedStyleAlignWith: variable
-  AutoCorrect: true
+# 複数行の場合はカンマをいれる。
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
 
-Layout/EmptyLineAfterMagicComment:
-  Enabled: true
+# Rails -----------------------------------------
+# 文字数が揃わなくなるので 1.days を受け入れる
+Rails/PluralizationGrammar:
+  Enabled: false
 
-Layout/EmptyLinesAroundBlockBody:
-  Enabled: true
+# RSpec -----------------------------------------
+# when や without などの predix がなくても許可する
+# 日本語の「〜場合」に対応したら考える
+# https://github.com/rubocop-hq/rubocop-rspec/issues/745
+RSpec/ContextWording:
+  Enabled: false
 
-# In a regular class definition, no empty lines around the body.
-Layout/EmptyLinesAroundClassBody:
-  Enabled: true
+# 階層が深くなるのをデフォルトよりもゆるくする。
+# 無理に守ると逆に読みにくくなる。数値は要検討
+RSpec/NestedGroups:
+  Max: 5
 
-# In a regular method definition, no empty lines around the body.
-Layout/EmptyLinesAroundMethodBody:
-  Enabled: true
-
-# In a regular module definition, no empty lines around the body.
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: true
-
-# Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
-Style/HashSyntax:
-  Enabled: true
-
-# Method definitions after `private` or `protected` isolated calls need one
-# extra level of indentation.
-Layout/IndentationConsistency:
-  Enabled: true
-  EnforcedStyle: indented_internal_methods
-
-# Two spaces, no tabs (for indentation).
-Layout/IndentationWidth:
-  Enabled: true
-
-Layout/LeadingCommentSpace:
-  Enabled: true
-
-Layout/SpaceAfterColon:
-  Enabled: true
-
-Layout/SpaceAfterComma:
-  Enabled: true
-
-Layout/SpaceAfterSemicolon:
-  Enabled: true
-
-Layout/SpaceAroundEqualsInParameterDefault:
-  Enabled: true
-
-Layout/SpaceAroundKeyword:
-  Enabled: true
-
-Layout/SpaceAroundOperators:
-  Enabled: true
-
-Layout/SpaceBeforeComma:
-  Enabled: true
-
-Layout/SpaceBeforeFirstArg:
-  Enabled: true
-
-Style/DefWithParentheses:
-  Enabled: true
-
-# Defining a method with parameters needs parentheses.
-Style/MethodDefParentheses:
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
-  EnforcedStyle: always
-  Exclude:
-    - "actionview/test/**/*.builder"
-    - "actionview/test/**/*.ruby"
-    - "actionpack/test/**/*.builder"
-    - "actionpack/test/**/*.ruby"
-    - "activestorage/db/migrate/**/*.rb"
-    - "actionmailbox/db/migrate/**/*.rb"
-    - "actiontext/db/migrate/**/*.rb"
-
-Style/RedundantFreeze:
-  Enabled: true
-
-# Use `foo {}` not `foo{}`.
-Layout/SpaceBeforeBlockBraces:
-  Enabled: true
-
-# Use `foo { bar }` not `foo {bar}`.
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-  EnforcedStyleForEmptyBraces: space
-
-# Use `{ a: 1 }` not `{a:1}`.
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: true
-
-Layout/SpaceInsideParens:
-  Enabled: true
-
-# Check quotes usage according to lint rule below.
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
-# Detect hard tabs, no hard tabs.
-Layout/Tab:
-  Enabled: true
-
-# Blank lines should not have any spaces.
-Layout/TrailingBlankLines:
-  Enabled: true
-
-# No trailing whitespace.
-Layout/TrailingWhitespace:
-  Enabled: true
-
-# Use quotes for string literals when they are enough.
-Style/UnneededPercentQ:
-  Enabled: true
-
-# Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
-Lint/RequireParentheses:
-  Enabled: true
-
-Lint/ShadowingOuterLocalVariable:
-  Enabled: true
-
-Lint/StringConversionInInterpolation:
-  Enabled: true
-
-Lint/UriEscapeUnescape:
-  Enabled: true
-
-Style/ParenthesesAroundCondition:
-  Enabled: true
-
-Style/RedundantBegin:
-  Enabled: true
-
-Style/RedundantReturn:
-  Enabled: true
-  AllowMultipleReturnValues: true
-
-Style/Semicolon:
-  Enabled: true
-  AllowAsExpressionSeparator: true
-
-# Prefer Foo.method over Foo::method
-Style/ColonMethodCall:
-  Enabled: true
-
-Style/TrivialAccessors:
-  Enabled: true
-
-Performance/FlatMap:
-  Enabled: true
-
-Performance/RedundantMerge:
-  Enabled: true
-
-Performance/StartWith:
-  Enabled: true
-
-Performance/EndWith:
-  Enabled: true
-
-Performance/RegexpMatch:
-  Enabled: true
-
-Performance/UnfreezeString:
-  Enabled: true
