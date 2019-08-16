@@ -71,15 +71,18 @@ Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
     find: 'detect'     # ActiveRecordのfindのイメージが強いので変える
-    find_all: 'filter' # ruby2.6以降は多言語にあわせfilterを使っていきたい
+    find_all: 'filter' # ruby2.6以降は他言語にあわせfilterを使っていきたい
 
 # コメントがないクラスも許可する
 Style/Documentation:
   Enabled: false
 
 # 複数行の場合はカンマをいれる。
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
 Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: consistent_comma
+  EnforcedStyleForMultiline: comma
 
 # Rails -----------------------------------------
 # 文字数が揃わなくなるので 1.days を受け入れる
