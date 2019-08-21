@@ -77,6 +77,10 @@ Style/CollectionMethods:
 Style/Documentation:
   Enabled: false
 
+# jsonで渡すなど、明示的に'!!'を使いたいケースがあるので許可する
+Style/DoubleNegation:
+  Enabled: false
+
 # 複数行の場合はカンマをいれる。
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
