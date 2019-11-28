@@ -15,7 +15,7 @@ AllCops:
 
 # Layout ----------------------------------------
 # ハッシュはtable,key両方許容
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedColonStyle:
     - table
     - key
