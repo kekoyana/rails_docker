@@ -5,8 +5,7 @@
 # NOTE: to have a dev-mode tool do its thing in production.
 if Rails.env.development?
   require 'annotate'
-  # rubocop:disable Metrics/BlockLength
-  task :set_annotation_options do
+  task set_annotation_options: :environment do # rubocop:disable Metrics/BlockLength
     # You can override any of these by setting an environment variable of the
     # same name.
     Annotate.set_defaults(
@@ -52,7 +51,6 @@ if Rails.env.development?
       'with_comment'               => true
     )
   end
-  # rubocop:enable Metrics/BlockLength
 
   Annotate.load_tasks
 end
