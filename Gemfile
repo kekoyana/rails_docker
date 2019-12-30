@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.0'
 gem 'rails', '6.0.2.1'
 
 gem 'pg'
@@ -21,6 +21,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'rspec-json_matchers'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
