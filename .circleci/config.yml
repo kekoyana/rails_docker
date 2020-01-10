@@ -77,6 +77,20 @@ jobs:
               -o /tmp/artifacts/rubocop-results.html \
               -f progress
 
+  brakeman:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: gem install bundler -v 2.1.2
+      - ruby/load-cache
+      - ruby/install-deps
+      # run brakeman
+      - run:
+          name: run brakeman
+          command: |
+            bundle exec brakeman -o /tmp/artifacts/brakeman_output.html
+
 workflows:
   version: 2
   build_and_test:
@@ -86,5 +100,8 @@ workflows:
           requires:
             - build
       - rubocop:
+          requires:
+            - build
+      - brakeman:
           requires:
             - build
