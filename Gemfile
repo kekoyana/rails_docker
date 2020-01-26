@@ -9,7 +9,6 @@ gem 'rails', '6.0.2.1'
 gem 'pg'
 
 gem 'bootsnap'
-gem 'fast_jsonapi'
 gem 'haml-rails'
 gem 'puma'
 
@@ -20,9 +19,6 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
-  gem 'rspec-json_matchers'
-  gem 'rspec-rails'
-  gem 'rspec_junit_formatter'
 end
 
 group :development do
@@ -33,4 +29,12 @@ group :development do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'web-console'
+end
+
+group :test do
+  gem 'capybara', require: false
+  gem 'rspec-json_matchers'
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver', require: false
 end
