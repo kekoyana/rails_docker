@@ -9,5 +9,8 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.label :ability
+    = f.collection_check_boxes :ability_ids, Ability.all, :id, :name, include_hidden: false
   .actions
     = f.submit 'Save'

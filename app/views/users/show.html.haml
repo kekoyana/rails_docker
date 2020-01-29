@@ -3,6 +3,9 @@
 %p
   %b Name:
   = @user.name
+%p
+  %b Ability:
+  = @user.abilities.pluck(:name).join(", ")
 
 = link_to 'Edit', edit_user_path(@user)
 \|
