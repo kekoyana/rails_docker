@@ -8,6 +8,7 @@ gem 'rails', '6.0.2.1'
 
 gem 'pg'
 
+gem 'active_hash'
 gem 'bootsnap'
 gem 'haml-rails'
 gem 'puma'
