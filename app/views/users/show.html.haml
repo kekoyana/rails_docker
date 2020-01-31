@@ -4,6 +4,9 @@
   %b Name:
   = @user.name
 %p
+  %b Position:
+  = @user.positions.pluck(:name).join(", ")
+%p
   %b Ability:
   = @user.abilities.pluck(:name).join(", ")
 

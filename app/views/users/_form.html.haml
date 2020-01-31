@@ -10,6 +10,9 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :position
+    = f.collection_check_boxes :position_ids, Position.all, :id, :name, include_hidden: false
+  .field
     = f.label :ability
     = f.collection_check_boxes :ability_ids, Ability.all, :id, :name, include_hidden: false
   .actions
