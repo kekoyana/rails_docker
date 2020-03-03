@@ -59,10 +59,6 @@ Metrics/ParameterLists:
 Style/AsciiComments:
    Enabled: false
 
-# 引数のハッシュはよしなにする
-Style/BracesAroundHashParameters:
-  EnforcedStyle: context_dependent
-
 # nested は事故るので false にする
 Style/ClassAndModuleChildren:
   Enabled: false
