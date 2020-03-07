@@ -7,12 +7,21 @@ Dockerでrailsを動かした
 docker-compose run web bundle exec rails new -MCTS --no-rc -d postgresql --skip-active-storage --skip-spring --skip-coffee --skip-turbolinks .
 ```
 
-## run
+## setup
+* for mac
 ```
-docker-compose up
+brew tap bibendi/dip
+brew install dip
+
+dip provision
 ```
 
-## binding.pry attach
+## run
 ```
-docker attach xxx_web
+dip rails s
+```
+
+port 13000 for fish
+```
+env WEB_PORT=3011 dip rails s
 ```
