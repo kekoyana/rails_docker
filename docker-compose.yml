@@ -8,7 +8,8 @@ services:
       - "${WEB_PORT:-3000}:3000"
     volumes:
       - "./:/work:cached"
-      - "./vendor/bundle:/usr/local/bundle:cached"
+      - "rails_cache:/work/tmp/cache"
+      - "bundle:/usr/local/bundle:cached"
       - "/work/.git"
     depends_on:
       - db
@@ -17,4 +18,6 @@ services:
     volumes:
       - "db:/var/lib/postgresql/data"
 volumes:
-  db: {}
+  db:
+  bundle:
+  rails_cache:
