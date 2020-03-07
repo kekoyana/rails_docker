@@ -5,7 +5,7 @@ services:
     stdin_open: true
     build: .
     ports:
-      - "3000:3000"
+      - "${WEB_PORT:-3000}:3000"
     volumes:
       - "./:/work:cached"
       - "./vendor/bundle:/usr/local/bundle:cached"
