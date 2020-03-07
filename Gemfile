@@ -19,6 +19,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -34,7 +35,6 @@ end
 group :test do
   gem 'capybara', require: false
   gem 'rspec-json_matchers'
-  gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver', require: false
 end
