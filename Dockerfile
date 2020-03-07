@@ -17,7 +17,7 @@ RUN apk add --update --no-cache \
     wget \
     chromium \
     chromium-chromedriver && \
-    gem install bundler -v 2.1.2
+    gem install bundler -v 2.1.4
 
 ENV APP_PATH /work
 WORKDIR $APP_PATH
