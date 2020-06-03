@@ -5,13 +5,18 @@ require:
   - rubocop-rspec
 
 # main ------------------------------------------
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   Exclude:
     # 自動生成は除外する
     - db/*schema.rb
     - node_modules/**/*
     - vendor/**/*
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
+  NewCops: enable
 
 # Layout ----------------------------------------
 # ハッシュはtable,key両方許容
@@ -29,19 +34,12 @@ Layout/HashAlignment:
 Layout/ClassStructure:
   Enabled: false
 
-# return if hoge? のあとは行を空けなくてもよい
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-
 Layout/LineLength:
   Exclude:
+    # migrateファイルは長くなるのでlengthは無視する
     - db/migrate/*.rb
-  Max: 120
 
 # Metrics ---------------------------------------
-Metrics/AbcSize:
-  Max: 16
-
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
