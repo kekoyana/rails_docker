@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'email' do |column|
   subject { build(described_class.table_name.singularize) }
 
