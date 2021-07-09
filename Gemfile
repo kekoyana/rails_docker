@@ -3,8 +3,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
-gem 'rails', '6.0.3.4'
+ruby '3.0.2'
+gem 'rails', '6.1.4'
 
 gem 'pg'
 
@@ -16,7 +16,6 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'factory_bot_rails'
   gem 'pry-byebug'
-  gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'rspec-rails'

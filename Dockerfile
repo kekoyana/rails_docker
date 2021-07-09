@@ -1,7 +1,7 @@
-FROM ruby:2.7.1-alpine
+FROM ruby:3.0.2-alpine
 
 ENV LANG=C.UTF-8 \
-    BUNDLER_VERSION=2.1.4 \
+    BUNDLER_VERSION=2.2.22 \
     BUNDLE_JOBS=4 \
     BUNDLE_PATH=/usr/local/bundle
 
