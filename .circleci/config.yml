@@ -9,7 +9,7 @@ orbs:
 defaults: &defaults
   docker:
     # specify the version you desire here
-    - image: circleci/ruby:2.7.1-node-browsers
+    - image: circleci/ruby:3.0.2-node-browsers
       environment:
         - DB_HOST: 127.0.0.1
         - RAILS_ENV: test
@@ -33,7 +33,7 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - run: gem install bundler -v 2.1.2
+      - run: gem install bundler -v 2.2.22
       - ruby/load-cache
       - ruby/install-deps
       - ruby/save-cache
@@ -54,7 +54,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: gem install bundler -v 2.1.2
+      - run: gem install bundler -v 2.2.22
       - ruby/load-cache
       - ruby/install-deps
       - ruby/run-tests
@@ -64,7 +64,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: gem install bundler -v 2.1.2
+      - run: gem install bundler -v 2.2.22
       - ruby/load-cache
       - ruby/install-deps
       # run rubocop
@@ -82,7 +82,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: gem install bundler -v 2.1.2
+      - run: gem install bundler -v 2.2.22
       - ruby/load-cache
       - ruby/install-deps
       # run brakeman
