@@ -16,7 +16,6 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'factory_bot_rails'
   gem 'pry-byebug'
-  gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'rspec-rails'
