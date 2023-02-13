@@ -148,7 +148,7 @@ GEM
       binding_of_caller (~> 1.0)
       pry (~> 0.13)
     public_suffix (4.0.6)
-    puma (5.3.2)
+    puma (6.1.0)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -269,6 +269,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
